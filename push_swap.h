@@ -20,8 +20,8 @@ typedef struct s_stack
 
 typedef	struct s_stacks
 {
-	t_stack		stack_a;
-	t_stack		stack_b;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
 }				t_stacks;
 
 

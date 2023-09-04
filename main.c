@@ -152,14 +152,13 @@ t_stack	*make_stack_b(void)
 int	main(int argc, char *argv[])
 {
 	t_stacks	stacks;
+	t_stack		stack_a;
+	t_stack		stack_b;
 
 	if (argc == 1)
 		return (0);
-	stacks = malloc(sizeof(t_stacks));
-	stacks->stack_a = make_stack_a(argv);
-	stacks->stack_b = make_stack_b();
-	if (stacks->stack_a == NULL)
-		return (0);
+	stacks->stack_a = stack_a;
+	stacks->stack_b = stack_b;
 	push_b(stacks);
 //	printf("stackb %d\n", stack_b->top->comp);
 	printf("check %d %d %d\n", stack_a->top->comp, stack_a->bottom->prev->comp, stack_a->bottom->comp);
