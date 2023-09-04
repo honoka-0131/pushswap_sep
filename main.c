@@ -113,29 +113,35 @@ t_stack	*put_stack_a(t_list **list)
 	return (ret);
 }
 
-t_stack	*make_stack_a(char **argv)
+void	put_data_a(char **argv, t_stacks stacks)
 {
-	t_list	*list;
-	size_t	i;
-	size_t	list_size;
+	t_list	*list_top;
+	t_list	*list_bottom;
 
 	if (check_argv_one(argv) < 0)
 		return (NULL);
-	list = create_list(ft_atoi(argv[1]));
+	list_top = malloc(sizeof(t_list));
+	stacks.stack_a->top = list_top;
+	list_top->data = ft_atoi(argv[1]);
+	list_top->prev = NULL;
 	i = 2;
 	while (argv[i])
 	{
-		add_list_back(&list, ft_atoi(argv[i]));
+		add_list_back(&list_top, ft_atoi(argv[i]));
 		i ++;
 	}
-	i = 0;
-	list_size = listsize(list);
+	list_bottom = malloc(sizeof(t_list));
+	list_bottom = list_top->next;
+	while (list_bottom->next != NULL)
+	{
+
+	}
+	stacks.stack_a->bottom = ;
 	while (i < list_size)
 	{
 		i ++;
 	}
-	list = compression(&list);
-	return (put_stack_a(&list));
+	return ;
 }
 
 t_stack	*make_stack_b(void)
@@ -162,6 +168,7 @@ int	main(int argc, char *argv[])
 	stacks.stack_a->bottom= NULL;
 	stacks.stack_a->count = 0;
 	stacks.stack_b = &stack_b;
+	put_data_a(**argv, stacks);
 //	push_b(stacks);
 //	printf("stackb %d\n", stack_b->top->comp);
 	//printf("check %d %d %d\n", stack_a->top->comp, stack_a->bottom->prev->comp, stack_a->bottom->comp);
