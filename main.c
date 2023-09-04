@@ -151,7 +151,7 @@ t_stack	*make_stack_b(void)
 
 int	main(int argc, char *argv[])
 {
-	t_stacks	*stacks;
+	t_stacks	stacks;
 
 	if (argc == 1)
 		return (0);
