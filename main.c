@@ -157,11 +157,14 @@ int	main(int argc, char *argv[])
 
 	if (argc == 1)
 		return (0);
-	stacks->stack_a = stack_a;
-	stacks->stack_b = stack_b;
-	push_b(stacks);
+	stacks.stack_a = &stack_a;
+	stacks.stack_a->top = NULL;
+	stacks.stack_a->bottom= NULL;
+	stacks.stack_a->count = 0;
+	stacks.stack_b = &stack_b;
+//	push_b(stacks);
 //	printf("stackb %d\n", stack_b->top->comp);
-	printf("check %d %d %d\n", stack_a->top->comp, stack_a->bottom->prev->comp, stack_a->bottom->comp);
+	//printf("check %d %d %d\n", stack_a->top->comp, stack_a->bottom->prev->comp, stack_a->bottom->comp);
 //	if (listsize(stack_a) <= 3)
 //	{
 //		sort_three_data(&stack_a);
