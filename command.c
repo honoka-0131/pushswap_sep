@@ -9,6 +9,8 @@ void    rotate(t_stack *stack)
     t_list  *new_top;
     t_list  *new_bottom;
 
+    if (stack->count <= 1)
+        return ;
     tmp_top = stack->top;
     tmp_bottom = stack->bottom;
     new_top = stack->top->next;
@@ -28,6 +30,8 @@ void    rev_rotate(t_stack *stack)
     t_list  *new_top;
     t_list  *new_bottom;
 
+    if (stack->count <= 1)
+        return ;
     tmp_top = stack->top;
     tmp_bottom = stack->bottom;
     new_top = stack->bottom;
@@ -45,6 +49,8 @@ void    swap(t_stack *stack)
     t_list  *tmp_top;
     t_list  *tmp;
 
+    if (stack->count <= 1)
+        return ;
     tmp_top = stack->top;
     tmp = stack->top->next->next;
     stack->top = stack->top->next;
@@ -56,33 +62,20 @@ void    swap(t_stack *stack)
     return ;
 }
 
-t_stack *make_newstack(t_list *list)
-{
-    t_stack  *new;
-
-    new = malloc(sizeof(t_stack));
-    new->top = list;
-    new->bottom = list;
-    new->count = 1;
-    new->top->next = NULL;
-    return (new);
-}
-
 void    push(t_stack *src, t_stack *dst)
 {
-    t_list  *tmp;
-    t_list  *tmp_two;
+    t_list  *src_newtop;
 
-    if (dst == NULL)
-    {
-        tmp = src->top->next;
-        tmp_two = src->top->next->next;
-        dst = make_newstack(src->top);
-        src->count --;
-        src->top = tmp;
-        src->top->next = tmp_two;
-        src->top->prev = NULL;
-        tmp->prev = src->top;
-    }
+    if (src->count == 0)
+        return ;
+    src_newtop = src->top->next;
+    src->count --;
+    src->top->next = dst->top;
+    dst->top = src->top;
+    dst->count ++;
+    if (dst->count == 1)
+        dst->bottom = dst->top;
+    src->top = src_newtop;
+    src->top->prev = NULL;
     return ;
 }

@@ -138,16 +138,27 @@ t_stack	*make_stack_a(char **argv)
 	return (put_stack_a(&list));
 }
 
+t_stack	*make_stack_b(void)
+{
+	t_stack	*new;
+
+	new = malloc(sizeof(t_stack*));
+	new->top = NULL;
+	new->bottom = NULL;
+	new->count = 0;
+	return (new);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	stack_a = NULL;
 	stack_b = NULL;
 	if (argc == 1)
 		return (0);
 	stack_a = make_stack_a(argv);
+	stack_b = make_stack_b();
 	if (stack_a == NULL)
 		return (0);
 //	printf("check %d\n", stack_a->bottom->comp);
