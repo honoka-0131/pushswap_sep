@@ -2,7 +2,7 @@ NAME = push_swap
 LIBFT = ./libft/libft.a
 PRINTF = ./printf/libftprintf.a
 
-SRC = main.c comp.c command.c
+SRC = main.c comp.c command.c command_two.c
 OBJ = $(SRC:%.c=%.o)
 CC = cc
 CFRAGS = -Wall -Wextra -Werror 

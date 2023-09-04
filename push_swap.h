@@ -18,10 +18,20 @@ typedef struct s_stack
     int            count;
 }                t_stack; 
 
+typedef	struct s_stacks
+{
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+}				t_stacks;
+
+
 t_list	*compression(t_list **list);
 size_t	listsize(t_list *list);
 void    rotate(t_stack *stack);
 void    rev_rotate(t_stack *stack);
 void    swap(t_stack *stack);
 void    push(t_stack *src, t_stack *dst);
+void	swap_a(t_stacks *stacks);
+void	swap_b(t_stacks *stacks);
+void	swap_s(t_stacks *stacks);
 #endif

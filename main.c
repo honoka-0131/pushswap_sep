@@ -151,8 +151,9 @@ t_stack	*make_stack_b(void)
 
 int	main(int argc, char *argv[])
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stacks	*stacks;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
 
 	stack_b = NULL;
 	if (argc == 1)
@@ -161,9 +162,11 @@ int	main(int argc, char *argv[])
 	stack_b = make_stack_b();
 	if (stack_a == NULL)
 		return (0);
-//	printf("check %d\n", stack_a->bottom->comp);
-	push(stack_a, stack_b);
-	printf("stackb %d\n", stack_b->top->comp);
+	stacks = malloc(sizeof(t_stacks));
+	stacks->stack_a = stack_a;
+	stacks->stack_b = stack_b;
+	swap_a(stacks);
+//	printf("stackb %d\n", stack_b->top->comp);
 	printf("check %d %d %d\n", stack_a->top->comp, stack_a->bottom->prev->comp, stack_a->bottom->comp);
 //	if (listsize(stack_a) <= 3)
 //	{
