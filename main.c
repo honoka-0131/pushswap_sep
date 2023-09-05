@@ -62,6 +62,7 @@ t_list	*create_list(int data)
 	list->data = data;
 	list->prev = NULL;
 	list->next = NULL;
+	list->comp = 0;
 	return (list);
 }
 
@@ -113,33 +114,50 @@ t_stack	*put_stack_a(t_list **list)
 	return (ret);
 }
 
+int	set_comp(t_list *list, int value)
+{
+	int	sum;
+
+	sum = 0;
+	while (list->data != value)
+	{
+		printf("set_comp check %d : %d\n", list->data, value);
+		if (list->data > value)
+		{
+			list->comp ++;
+			sum ++;
+		}
+		list = list->next;
+	}
+	return (sum);
+}
+
 void	put_data_a(char **argv, t_stacks stacks)
 {
-	t_list	*list_top;
-	t_list	*list_bottom;
+	t_list	*list;
 	int		i;
 
 	if (check_argv_one(argv) < 0)
 		return ;
-	list_top = malloc(sizeof(t_list));
-	stacks.stack_a->top = list_top;
-	list_top->data = ft_atoi(argv[1]);
-	list_top->prev = NULL;
-	list_top->next = NULL;
+	list = malloc(sizeof(t_list));
+	stacks.stack_a->top = list;
+	list->data = ft_atoi(argv[1]);
+	list->prev = NULL;
+	list->comp = 0;
+	list->next = NULL;
 	i = 2;
 	while (argv[i])
 	{
-		add_list_back(&list_top, ft_atoi(argv[i]));
+		add_list_back(&list, ft_atoi(argv[i]));
+		set_comp(stacks.stack_a->top, ft_atoi(argv[i]));
 		i ++;
 	}
 	stacks.stack_a->count = i;
-	list_bottom = malloc(sizeof(t_list));
-	list_bottom = list_top->next;
-	while (list_bottom->next != NULL)
+	while (list->next != NULL)
 	{
-		list_bottom = list_bottom->next;
+		list = list->next;
 	}
-	stacks.stack_a->bottom = list_bottom;
+	stacks.stack_a->bottom = list;
 	return ;
 }
 
@@ -170,7 +188,7 @@ int	main(int argc, char *argv[])
 	put_data_a(argv, stacks);
 //	push_b(stacks);
 //	printf("stackb %d\n", stack_b->top->comp);
-	printf("check %d %d %d\n", stack_a.top->data, stack_a.bottom->prev->data, stack_a.bottom->data);
+	printf("check %d %d %d\n", stack_a.top->comp, stack_a.top->next->comp, stack_a.bottom->comp);
 //	if (listsize(stack_a) <= 3)
 //	{
 //		sort_three_data(&stack_a);
