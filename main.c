@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/05 22:56:03 by hmakida           #+#    #+#             */
+/*   Updated: 2023/09/06 13:00:34 by hmakida          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include    "libft/libft.h"
 #include    "printf/ft_printf.h"
 #include    "push_swap.h"
@@ -114,20 +126,22 @@ t_stack	*put_stack_a(t_list **list)
 	return (ret);
 }
 
-int	set_comp(t_list *list, int value)
+int	set_comp(t_stack *stack, int value)
 {
-	int	sum;
+	int		sum;
+	t_list	*tmp;
 
 	sum = 0;
-	while (list->data != value)
+	tmp = stack->top;
+	while (tmp->data != value)
 	{
-		printf("set_comp check %d : %d\n", list->data, value);
-		if (list->data > value)
+		printf("set_comp check %d : %d\n", tmp->data, value);
+		if (tmp->data > value)
 		{
-			list->comp ++;
+			tmp->comp ++;
 			sum ++;
 		}
-		list = list->next;
+		tmp = tmp->next;
 	}
 	return (sum);
 }
@@ -143,13 +157,13 @@ void	put_data_a(char **argv, t_stacks stacks)
 	stacks.stack_a->top = list;
 	list->data = ft_atoi(argv[1]);
 	list->prev = NULL;
-	list->comp = 0;
+	list->comp = set_comp(stacks.stack_a, ft_atoi(argv[1]));
 	list->next = NULL;
 	i = 2;
 	while (argv[i])
 	{
 		add_list_back(&list, ft_atoi(argv[i]));
-		set_comp(stacks.stack_a->top, ft_atoi(argv[i]));
+		printf("ret %d\n", set_comp(stacks.stack_a, ft_atoi(argv[i])));
 		i ++;
 	}
 	stacks.stack_a->count = i;
@@ -165,7 +179,7 @@ t_stack	*make_stack_b(void)
 {
 	t_stack	*new;
 
-	new = malloc(sizeof(t_stack*));
+	new = malloc(sizeof (t_stack*));
 	new->top = NULL;
 	new->bottom = NULL;
 	new->count = 0;
@@ -182,7 +196,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	stacks.stack_a = &stack_a;
 	stacks.stack_a->top = NULL;
-	stacks.stack_a->bottom= NULL;
+	stacks.stack_a->bottom = NULL;
 	stacks.stack_a->count = 0;
 	stacks.stack_b = &stack_b;
 	put_data_a(argv, stacks);
