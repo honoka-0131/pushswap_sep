@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:56:03 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/06 13:00:34 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/07 12:38:50 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,9 @@ int	set_comp(t_stack *stack, int value)
 	{
 		printf("set_comp check %d : %d\n", tmp->data, value);
 		if (tmp->data > value)
-		{
 			tmp->comp ++;
+		else
 			sum ++;
-		}
 		tmp = tmp->next;
 	}
 	return (sum);
@@ -150,6 +149,7 @@ void	put_data_a(char **argv, t_stacks stacks)
 {
 	t_list	*list;
 	int		i;
+	int		new_comp;
 
 	if (check_argv_one(argv) < 0)
 		return ;
@@ -163,10 +163,15 @@ void	put_data_a(char **argv, t_stacks stacks)
 	while (argv[i])
 	{
 		add_list_back(&list, ft_atoi(argv[i]));
-		printf("ret %d\n", set_comp(stacks.stack_a, ft_atoi(argv[i])));
+		new_comp = set_comp(stacks.stack_a, ft_atoi(argv[i]));
+		while (list->next != NULL)
+			list = list->next;
+		list->comp = new_comp;
+		while (list->prev != NULL)
+			list = list->prev;
 		i ++;
 	}
-	stacks.stack_a->count = i;
+	stacks.stack_a->count = i - 1;
 	while (list->next != NULL)
 	{
 		list = list->next;
