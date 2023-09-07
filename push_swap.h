@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmakida <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:17:47 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/05 23:21:37 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/07 13:27:39 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,5 @@ void	push_b(t_stacks *stacks);
 void	swap_a(t_stacks *stacks);
 void	swap_b(t_stacks *stacks);
 void	swap_s(t_stacks *stacks);
+void	sort_three_data(t_stacks *stacks);
 #endif

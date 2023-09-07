@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmakida <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:10:46 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/05 23:10:50 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/07 15:27:02 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	rotate(t_stack *stack)
 	stack->bottom = new_bottom;
 	stack->bottom->next = NULL;
 	stack->bottom->prev = tmp_bottom;
+	tmp_bottom->next = new_bottom;
 	return ;
 }
 

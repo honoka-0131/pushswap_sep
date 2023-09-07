@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:56:03 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/07 12:38:50 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/07 14:22:22 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int	set_comp(t_stack *stack, int value)
 	tmp = stack->top;
 	while (tmp->data != value)
 	{
-		printf("set_comp check %d : %d\n", tmp->data, value);
+	//	printf("set_comp check %d : %d\n", tmp->data, value);
 		if (tmp->data > value)
 			tmp->comp ++;
 		else
@@ -208,11 +208,11 @@ int	main(int argc, char *argv[])
 //	push_b(stacks);
 //	printf("stackb %d\n", stack_b->top->comp);
 	printf("check %d %d %d\n", stack_a.top->comp, stack_a.top->next->comp, stack_a.bottom->comp);
-//	if (listsize(stack_a) <= 3)
-//	{
-//		sort_three_data(&stack_a);
-//		return (0);
-//	}
+	if (stack_a.count <= 3)
+	{
+		sort_three_data(&stacks);
+		return (0);
+	}
 //	else if (listsize(stack_a) <= 6)
 //	{
 //		sort_under_seven(&stack_a, &stack_b);
