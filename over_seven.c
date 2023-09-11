@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:02:23 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 18:39:27 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/11 20:11:33 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void    sort_over_seven(t_stacks *stacks)
         }
         i = 0;
         num += 10;
+        group ++;
     } 
     return ;
 }
