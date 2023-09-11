@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmakida <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:05:02 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/05 23:06:18 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/11 12:38:40 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	rev_rotate(t_stack *stack)
 	new_top->prev = NULL;
 	stack->top->next = tmp_top;
 	stack->bottom = new_bottom;
+//	printf("check new_bottom %p\n", new_bottom);
 	stack->bottom->next = NULL;
+//	printf("check8\n");
 	return ;
 }
 

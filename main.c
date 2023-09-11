@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:56:03 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/07 14:22:22 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/11 14:38:41 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,20 +204,22 @@ int	main(int argc, char *argv[])
 	stacks.stack_a->bottom = NULL;
 	stacks.stack_a->count = 0;
 	stacks.stack_b = &stack_b;
+	stacks.stack_b->count = 0;
 	put_data_a(argv, stacks);
 //	push_b(stacks);
 //	printf("stackb %d\n", stack_b->top->comp);
-	printf("check %d %d %d\n", stack_a.top->comp, stack_a.top->next->comp, stack_a.bottom->comp);
+//	printf("check %d %d %d\n", stack_a.top->comp, stack_a.top->next->comp, stack_a.bottom->comp);
 	if (stack_a.count <= 3)
 	{
-		sort_three_data(&stacks);
+		sort_three_data(&stack_a);
 		return (0);
 	}
-//	else if (listsize(stack_a) <= 6)
-//	{
-//		sort_under_seven(&stack_a, &stack_b);
-//		return (0);
-//	}
+	else if (stack_a.count <= 6)
+	{
+		sort_under_seven(&stacks);
+	//	printf("%d %d %d %d %d\n", stack_a.top->comp, stack_a.top->next->comp, stack_a.top->next->next->comp, stack_a.bottom->prev->comp, stack_a.bottom->comp);
+		return (0);
+	}
 //	else
 //		sort_over_seven(&stack_a, &stack_b);
 }
