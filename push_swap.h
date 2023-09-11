@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:17:47 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 17:25:03 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:35:38 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_list
 	struct s_list	*prev;
 	int				data;
 	int				comp;
+	int				group;
 }				t_list;
 
 typedef struct	s_stack

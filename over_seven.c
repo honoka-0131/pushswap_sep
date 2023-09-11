@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:02:23 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 18:20:46 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:38:10 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void    sort_over_seven(t_stacks *stacks)
     int median;
     int count;
     int i;
+    int group;
 
+    group = 1;
     num = 50;
     median = stacks->stack_a->count / 2;
     i = 0;
@@ -30,9 +32,13 @@ void    sort_over_seven(t_stacks *stacks)
         while (count > i)
         {
             if (stacks->stack_a->top->comp >= median && median + num >= stacks->stack_a->top->comp)
+            {
+                stacks->stack_a->top->group = group;
                 push_b(stacks);
+            }
             else if (stacks->stack_a->top->comp >= median - num && median >= stacks->stack_a->top->comp)
             {
+                stacks->stack_a->top->group = group * -1;
                 push_b(stacks);
                 rotate_b(stacks);
             }
