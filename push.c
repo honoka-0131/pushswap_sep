@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:02:23 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 12:53:13 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/11 15:06:07 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,12 @@ void	push(t_stack *src, t_stack *dst)
 	src->top->next = dst->top;
 	dst->top = src->top;
 	dst->count ++;
-//	printf("dstcount %d\n", dst->count);
 	if (dst->count == 1)
-	{
 		dst->bottom = dst->top;
-	//	printf("ここのifcheck\n");
-	}
 	if (dst->count == 2)
 	{
 		dst->bottom->prev = dst->top;
 	}
-//	printf("check dst->bottom %d\n", dst->bottom->comp);
 	if (src->count != 0)
 	{
 		src->top = src_newtop;
@@ -55,6 +50,5 @@ void	push_b(t_stacks *stacks)
 {
 	push(stacks->stack_a, stacks->stack_b);
 	ft_printf("pb\n");
-//	printf("check pb %d\n", stacks->stack_b->top->comp);
 	return ;
 }

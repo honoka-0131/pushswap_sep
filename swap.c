@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:17:23 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/07 15:27:48 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/11 17:00:46 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,13 @@ void	swap(t_stack *stack)
 	if (stack->count <= 1)
 		return ;
 	tmp_top = stack->top;
-	//printf("tmp_top %p\n", tmp_top->prev);
 	tmp = stack->top->next->next;
-//	printf("tmp %p\n", tmp);
 	stack->top = stack->top->next;
-	//printf("check1\n");
 	stack->top->prev = NULL;
-	//printf("check2\n");
 	stack->top->next = tmp_top;
-	//printf("check3\n");
 	tmp_top->prev = stack->top;
-	//printf("check4\n");
 	tmp_top->next = tmp;
-
-	//printf("check stack->top->comp %d\n", stack->top->comp);
 	tmp->prev = tmp_top;
-	//printf("ここでダメそう");
 	return ;
 }
 
