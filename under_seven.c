@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:05:14 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 17:13:44 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:57:53 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 #include	"printf/ft_printf.h"
 #include	"push_swap.h"
 
-int	find_max(t_stacks *stacks)
+int	find_max(t_stack *stack)
 {
 	t_list	*tmp;
 	int		max;
 
-	max = stacks->stack_a->top->comp;
-	tmp = stacks->stack_a->top;
+	max = stack->top->comp;
+	tmp = stack->top;
 	while (tmp->next != NULL)
 	{
 		if (max < tmp->comp)
 			max = tmp->comp;
 		tmp = tmp->next;
 	}
+	if (max < tmp->comp)
+			max = tmp->comp;
 	return (max);
 }
 
@@ -40,8 +42,8 @@ void    sort_under_seven(t_stacks *stacks)
 	{
 		if (stacks->stack_a->top->comp > stacks->stack_b->top->comp)
 			push_a(stacks);
-		else if (stacks->stack_b->top->comp == find_max(stacks) + 1 
-			&& stacks->stack_a->top->comp == find_max(stacks))
+		else if (stacks->stack_b->top->comp == find_max(stacks->stack_a) + 1 
+			&& stacks->stack_a->top->comp == find_max(stacks->stack_a))
 		{
 			rotate_a(stacks);
 			push_a(stacks);

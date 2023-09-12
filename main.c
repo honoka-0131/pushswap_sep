@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:56:03 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 19:56:08 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/11 20:27:55 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,9 +220,9 @@ int	main(int argc, char *argv[])
 
 	t_list *list;
     list = stack_b.top;
-    while(list)
-    {
-        printf("%d %d \n", list->comp, list->group);
-        list = list->next;
-    }
+//    while(list)
+  //  {
+    //    printf("%d %d \n", list->comp, list->group);
+      //  list = list->next;
+    //}
 }

@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:17:47 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 18:35:38 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:18:29 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void	sort_three_data(t_stack *stack);
 void	sort_three_data_b(t_stack *stack);
 void	sort_under_seven(t_stacks *stacks);
 void	sort_over_seven(t_stacks *stacks);
+int		find_max(t_stack *stack);
 #endif
