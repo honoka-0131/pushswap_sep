@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:02:23 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/12 15:32:38 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:56:49 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    sort_over_seven(t_stacks *stacks)
     t_list  *tmp;
 
     group = 1;
-    num = 10;
+    num = stacks->stack_a->count / 10;
     median = stacks->stack_a->count / 2;
     i = 0;
     while (stacks->stack_a->count > 1)
@@ -37,6 +37,8 @@ void    sort_over_seven(t_stacks *stacks)
             {
                 stacks->stack_a->top->group = group;
                 push_b(stacks);
+                if (stacks->stack_b->top->comp < stacks->stack_b->top->comp)
+                swap_b(stacks);
             }
             else if (stacks->stack_a->top->comp >= median - num && median >= stacks->stack_a->top->comp)
             {
