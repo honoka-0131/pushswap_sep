@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:05:02 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 16:59:54 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 16:27:34 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ void	rev_rotate(t_stack *stack)
 
 void	rev_rotate_a(t_stacks *stacks)
 {
-	rev_rotate(stacks->stack_a);
+	rev_rotate(stacks->a);
 	ft_printf("rra\n");
 	return ;
 }
 
 void	rev_rotate_b(t_stacks *stacks)
 {
-	rev_rotate(stacks->stack_b);
+	rev_rotate(stacks->b);
 	ft_printf("rrb\n");
 	return ;
 }
 
 void	rev_rotate_r(t_stacks *stacks)
 {
-	rev_rotate(stacks->stack_a);
-	rev_rotate(stacks->stack_b);
+	rev_rotate(stacks->a);
+	rev_rotate(stacks->b);
 	ft_printf("rrr\n");
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:56:03 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/13 15:48:45 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 16:25:47 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,6 @@ void	add_list_back(t_list **list, int data)
 	new->prev = tmp;
 }
 
-t_stack	*put_stack_a(t_list **list)
-{
-	t_stack	*ret;
-	int		i;
-
-	ret = malloc(sizeof(t_stack));
-	ret->top = *list;
-	i = 1;
-	while ((*list)->next != NULL)
-	{
-		*list = (*list)->next;
-		i ++;
-	}
-	ret->bottom = *list;
-	ret->count = i;
-	return (ret);
-}
-
 int	set_comp(t_stack *stack, int value)
 {
 	int		sum;
@@ -65,22 +47,14 @@ int	set_comp(t_stack *stack, int value)
 	return (sum);
 }
 
-void	put_data_a(char **argv, t_stacks stacks)
+int	put_comp_list(int i, char **argv, t_stacks stacks, t_list *list)
 {
-	t_list	*list;
-	int		i;
-	int		new_comp;
+	int	new_comp;
 
-	if (check_argv_one(argv) < 0)
-		return ;
-	list = create_list(ft_atoi(argv[1]));
-	stacks.stack_a->top = list;
-	list->comp = set_comp(stacks.stack_a, ft_atoi(argv[1]));
-	i = 2;
 	while (argv[i])
 	{
 		add_list_back(&list, ft_atoi(argv[i]));
-		new_comp = set_comp(stacks.stack_a, ft_atoi(argv[i]));
+		new_comp = set_comp(stacks.a, ft_atoi(argv[i]));
 		while (list->next != NULL)
 			list = list->next;
 		list->comp = new_comp;
@@ -88,10 +62,24 @@ void	put_data_a(char **argv, t_stacks stacks)
 			list = list->prev;
 		i ++;
 	}
-	stacks.stack_a->count = i - 1;
+	return (i);
+}
+
+void	put_data_a(char **argv, t_stacks stacks)
+{
+	t_list	*list;
+	int		i;
+
+	if (check_argv_one(argv) < 0)
+		return ;
+	list = create_list(ft_atoi(argv[1]));
+	stacks.a->top = list;
+	list->comp = set_comp(stacks.a, ft_atoi(argv[1]));
+	i = put_comp_list(2, argv, stacks, list);
+	stacks.a->count = i - 1;
 	while (list->next != NULL)
 		list = list->next;
-	stacks.stack_a->bottom = list;
+	stacks.a->bottom = list;
 	return ;
 }
 
@@ -103,12 +91,12 @@ int	main(int argc, char *argv[])
 
 	if (argc == 1)
 		return (0);
-	stacks.stack_a = &stack_a;
-	stacks.stack_a->top = NULL;
-	stacks.stack_a->bottom = NULL;
-	stacks.stack_a->count = 0;
-	stacks.stack_b = &stack_b;
-	stacks.stack_b->count = 0;
+	stacks.a = &stack_a;
+	stacks.a->top = NULL;
+	stacks.a->bottom = NULL;
+	stacks.a->count = 0;
+	stacks.b = &stack_b;
+	stacks.b->count = 0;
 	put_data_a(argv, stacks);
 	if (stack_a.count <= 3)
 		sort_three_data(&stacks);

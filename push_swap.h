@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:17:47 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/13 15:54:38 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 16:24:34 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_stack
 
 typedef struct s_stacks
 {
-	t_stack		*stack_a;
-	t_stack		*stack_b;
+	t_stack		*a;
+	t_stack		*b;
 }				t_stacks;
 
 t_list	*compression(t_list **list);
@@ -61,4 +61,5 @@ int		find_max(t_stack *stack);
 int		check_argv_one(char **argv);
 int		check_argv_two(char **argv);
 t_list	*create_list(int data);
+t_stack	*put_stack_a(t_list **list);
 #endif

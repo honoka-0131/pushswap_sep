@@ -3,16 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmakida <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 15:47:43 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/13 15:49:01 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 16:19:49 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include    "libft/libft.h"
 #include    "printf/ft_printf.h"
 #include    "push_swap.h"
+
+t_stack	*put_stack_a(t_list **list)
+{
+	t_stack	*ret;
+	int		i;
+
+	ret = malloc(sizeof(t_stack));
+	ret->top = *list;
+	i = 1;
+	while ((*list)->next != NULL)
+	{
+		*list = (*list)->next;
+		i ++;
+	}
+	ret->bottom = *list;
+	ret->count = i;
+	return (ret);
+}
 
 int	check_argv_two(char **argv)
 {

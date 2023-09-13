@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:05:14 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/13 15:05:13 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 16:31:07 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ int	find_max(t_stack *stack)
 
 void	sort_under_seven(t_stacks *stacks)
 {
-	while (stacks->stack_a->count > 3)
+	while (stacks->a->count > 3)
 		push_b(stacks);
 	sort_three_data(stacks);
 	sort_three_data_b(stacks);
-	while (stacks->stack_b->count != 0)
+	while (stacks->b->count != 0)
 	{
-		if (stacks->stack_a->top->comp > stacks->stack_b->top->comp)
+		if (stacks->a->top->comp > stacks->b->top->comp)
 			push_a(stacks);
-		else if (stacks->stack_b->top->comp == find_max(stacks->stack_a) + 1
-			&& stacks->stack_a->top->comp == find_max(stacks->stack_a))
+		else if (stacks->b->top->comp == find_max(stacks->a) + 1
+			&& stacks->a->top->comp == find_max(stacks->a))
 		{
 			rotate_a(stacks);
 			push_a(stacks);
@@ -53,7 +53,7 @@ void	sort_under_seven(t_stacks *stacks)
 			rotate_a(stacks);
 		}
 	}
-	while (stacks->stack_a->top->comp != 0)
+	while (stacks->a->top->comp != 0)
 		rotate_a(stacks);
 	return ;
 }

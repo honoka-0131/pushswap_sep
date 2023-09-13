@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:17:23 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 17:00:46 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 16:28:13 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ void	swap(t_stack *stack)
 
 void	swap_a(t_stacks *stacks)
 {
-	swap(stacks->stack_a);
+	swap(stacks->a);
 	ft_printf("sa\n");
 	return ;
 }
 
 void	swap_b(t_stacks *stacks)
 {
-	swap(stacks->stack_b);
+	swap(stacks->b);
 	ft_printf("sb\n");
 	return ;
 }
 
 void	swap_s(t_stacks *stacks)
 {
-	swap(stacks->stack_a);
-	swap(stacks->stack_b);
+	swap(stacks->a);
+	swap(stacks->b);
 	ft_printf("ss\n");
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:02:23 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/13 15:36:47 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 16:27:17 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ void	helper(t_stacks *stacks, int count, int group, int median, int num)
 	i = 0;
 	while (count > i)
 	{
-		if (stacks->stack_a->top->comp >= median
-			&& median + num >= stacks->stack_a->top->comp)
+		if (stacks->a->top->comp >= median
+			&& median + num >= stacks->a->top->comp)
 		{
-			stacks->stack_a->top->group = group;
+			stacks->a->top->group = group;
 			push_b(stacks);
-			if (stacks->stack_b->top->comp < stacks->stack_b->top->comp)
+			if (stacks->b->top->comp < stacks->b->top->comp)
 				swap_b(stacks);
 		}
-		else if (stacks->stack_a->top->comp >= median - num
-			&& median >= stacks->stack_a->top->comp)
+		else if (stacks->a->top->comp >= median - num
+			&& median >= stacks->a->top->comp)
 		{
-			stacks->stack_a->top->group = group * -1;
+			stacks->a->top->group = group * -1;
 			push_b(stacks);
 			rotate_b(stacks);
 		}
@@ -44,17 +44,17 @@ void	helper(t_stacks *stacks, int count, int group, int median, int num)
 
 int	rb_and_pa(t_stacks *stacks, int group, t_list *tmp, int max)
 {
-	tmp = stacks->stack_b->top;
+	tmp = stacks->b->top;
 	group = tmp->group;
-	while (stacks->stack_b->count > 0 && tmp->group == group)
+	while (stacks->b->count > 0 && tmp->group == group)
 	{
-		max = find_max(stacks->stack_b);
+		max = find_max(stacks->b);
 		if (tmp->comp == max)
 		{
-			while (stacks->stack_b->top->comp != max)
+			while (stacks->b->top->comp != max)
 				rotate_b(stacks);
 			push_a(stacks);
-			tmp = stacks->stack_b->top;
+			tmp = stacks->b->top;
 		}
 		else
 			tmp = tmp->next;
@@ -64,16 +64,16 @@ int	rb_and_pa(t_stacks *stacks, int group, t_list *tmp, int max)
 
 int	rrb_and_pa(t_stacks *stacks, int group, t_list *tmp, int max)
 {
-	tmp = stacks->stack_b->bottom;
-	while (stacks->stack_b->count > 0 && tmp->group == group)
+	tmp = stacks->b->bottom;
+	while (stacks->b->count > 0 && tmp->group == group)
 	{
-		max = find_max(stacks->stack_b);
+		max = find_max(stacks->b);
 		if (tmp->comp == max)
 		{
-			while (stacks->stack_b->top->comp != max)
+			while (stacks->b->top->comp != max)
 				rev_rotate_b(stacks);
 			push_a(stacks);
-			tmp = stacks->stack_b->bottom;
+			tmp = stacks->b->bottom;
 		}
 		else
 			tmp = tmp->prev;
@@ -88,7 +88,7 @@ void	helper_two(t_stacks *stacks, int group)
 
 	tmp = NULL;
 	max = 0;
-	while (stacks->stack_b->count > 1)
+	while (stacks->b->count > 1)
 	{
 		group = rb_and_pa(stacks, group, tmp, max);
 		group = rrb_and_pa(stacks, group, tmp, max);
@@ -104,11 +104,11 @@ void	sort_over_seven(t_stacks *stacks)
 	int		group;
 
 	group = 1;
-	num = stacks->stack_a->count / 10;
-	median = stacks->stack_a->count / 2;
-	while (stacks->stack_a->count > 1)
+	num = stacks->a->count / 10;
+	median = stacks->a->count / 2;
+	while (stacks->a->count > 1)
 	{
-		count = stacks->stack_a->count;
+		count = stacks->a->count;
 		helper(stacks, count, group, median, num);
 		num += 10;
 		group ++;
