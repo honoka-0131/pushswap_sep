@@ -6,77 +6,13 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:56:03 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/11 20:27:55 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 15:48:45 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include    "libft/libft.h"
 #include    "printf/ft_printf.h"
 #include    "push_swap.h"
-
-int	check_argv_two(char **argv)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 1;
-	j = i + 1;
-	while (argv[i])
-	{
-		while (argv[j])
-		{
-			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
-			{
-				ft_printf("Error\n");
-				return (-1);
-			}
-			j ++;
-		}
-		i ++;
-		j = i + 1;
-	}
-	return (1);
-}
-
-int	check_argv_one(char **argv)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 1;
-	j = 0;
-	while (argv[i][j])
-	{
-		while (argv[i][j])
-		{
-			if (ft_isdigit(argv[i][j]) == 0 && argv[i][j] != '-')
-			{
-				ft_printf("Error\n");
-				return (-1);
-			}
-			j ++;
-		}
-		j = 0;
-		i ++;
-		if (argv[i] == NULL)
-			break ;
-	}
-	return (check_argv_two(argv));
-}
-
-t_list	*create_list(int data)
-{
-	t_list	*list;
-
-	list = malloc(sizeof(t_list));
-	if (list == NULL)
-		return (NULL);
-	list->data = data;
-	list->prev = NULL;
-	list->next = NULL;
-	list->comp = 0;
-	return (list);
-}
 
 void	add_list_back(t_list **list, int data)
 {
@@ -91,21 +27,6 @@ void	add_list_back(t_list **list, int data)
 	new = create_list(data);
 	tmp->next = new;
 	new->prev = tmp;
-}
-
-size_t	listsize(t_list *list)
-{
-	size_t	i;
-
-	if (list == NULL)
-		return (0);
-	i = 1;
-	while (list->next != NULL)
-	{
-		i ++;
-		list = list->next;
-	}
-	return (i);
 }
 
 t_stack	*put_stack_a(t_list **list)
@@ -152,12 +73,9 @@ void	put_data_a(char **argv, t_stacks stacks)
 
 	if (check_argv_one(argv) < 0)
 		return ;
-	list = malloc(sizeof(t_list));
+	list = create_list(ft_atoi(argv[1]));
 	stacks.stack_a->top = list;
-	list->data = ft_atoi(argv[1]);
-	list->prev = NULL;
 	list->comp = set_comp(stacks.stack_a, ft_atoi(argv[1]));
-	list->next = NULL;
 	i = 2;
 	while (argv[i])
 	{
@@ -172,22 +90,9 @@ void	put_data_a(char **argv, t_stacks stacks)
 	}
 	stacks.stack_a->count = i - 1;
 	while (list->next != NULL)
-	{
 		list = list->next;
-	}
 	stacks.stack_a->bottom = list;
 	return ;
-}
-
-t_stack	*make_stack_b(void)
-{
-	t_stack	*new;
-
-	new = malloc(sizeof(t_stack*));
-	new->top = NULL;
-	new->bottom = NULL;
-	new->count = 0;
-	return (new);
 }
 
 int	main(int argc, char *argv[])
@@ -206,23 +111,10 @@ int	main(int argc, char *argv[])
 	stacks.stack_b->count = 0;
 	put_data_a(argv, stacks);
 	if (stack_a.count <= 3)
-	{
-		sort_three_data(&stack_a);
-		return (0);
-	}
+		sort_three_data(&stacks);
 	else if (stack_a.count <= 6)
-	{
 		sort_under_seven(&stacks);
-		return (0);
-	}
 	else
 		sort_over_seven(&stacks);
-
-	t_list *list;
-    list = stack_b.top;
-//    while(list)
-  //  {
-    //    printf("%d %d \n", list->comp, list->group);
-      //  list = list->next;
-    //}
+	return (0);
 }

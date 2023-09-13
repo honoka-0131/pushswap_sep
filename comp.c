@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   comp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmakida <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:55:02 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/05 22:55:51 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 15:40:14 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,21 @@ int	*make_sort(int *array, size_t size)
 		j = i + 1;
 	}
 	return (array);
+}
+
+size_t	listsize(t_list *list)
+{
+	size_t	i;
+
+	if (list == NULL)
+		return (0);
+	i = 1;
+	while (list->next != NULL)
+	{
+		i ++;
+		list = list->next;
+	}
+	return (i);
 }
 
 t_list	*compression(t_list **list)

@@ -6,7 +6,7 @@
 /*   By: hmakida <hmakida@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:05:14 by hmakida           #+#    #+#             */
-/*   Updated: 2023/09/12 14:57:53 by hmakida          ###   ########.fr       */
+/*   Updated: 2023/09/13 15:05:13 by hmakida          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ int	find_max(t_stack *stack)
 	return (max);
 }
 
-void    sort_under_seven(t_stacks *stacks)
+void	sort_under_seven(t_stacks *stacks)
 {
 	while (stacks->stack_a->count > 3)
 		push_b(stacks);
-	sort_three_data(stacks->stack_a);
-	sort_three_data_b(stacks->stack_b);
+	sort_three_data(stacks);
+	sort_three_data_b(stacks);
 	while (stacks->stack_b->count != 0)
 	{
 		if (stacks->stack_a->top->comp > stacks->stack_b->top->comp)
 			push_a(stacks);
-		else if (stacks->stack_b->top->comp == find_max(stacks->stack_a) + 1 
+		else if (stacks->stack_b->top->comp == find_max(stacks->stack_a) + 1
 			&& stacks->stack_a->top->comp == find_max(stacks->stack_a))
 		{
 			rotate_a(stacks);
